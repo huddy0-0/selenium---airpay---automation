@@ -4,9 +4,9 @@ import json
 #  Authentication (Get Access Token)
 AUTH_URL = "https://api.availity.com/v1/token"
 
-# Replace with actual credentials from Availity Developer Portal
-CLIENT_ID = "1a64871f5162e10408b39e78f9e3020c"
-CLIENT_SECRET = "63e60fe1cd8d0baff9ed02a6a8161ad0"
+# Replace with actual credentials from Availity Developer Portal (sandbox key for demo testing purposes)
+CLIENT_ID = "client_id_here"
+CLIENT_SECRET = "client_secret_here"
 
 # Request payload for authentication
 auth_payload = {
