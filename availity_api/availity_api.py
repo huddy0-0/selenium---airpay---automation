@@ -1,10 +1,10 @@
 import requests
 import json
 
-# STEP 1: Authentication (Get Access Token)
+#  Authentication (Get Access Token)
 AUTH_URL = "https://api.availity.com/v1/token"
 
-# Replace with your actual credentials from Availity Developer Portal
+# Replace with actual credentials from Availity Developer Portal
 CLIENT_ID = "1a64871f5162e10408b39e78f9e3020c"
 CLIENT_SECRET = "63e60fe1cd8d0baff9ed02a6a8161ad0"
 
@@ -16,18 +16,18 @@ auth_payload = {
     "scope": "hipaa"
 }
 
-# Send the request
+# Sends request
 auth_response = requests.post(AUTH_URL, data=auth_payload)
 
-# Check if authentication was successful
+# Checks authentication
 if auth_response.status_code == 200:
     access_token = auth_response.json().get("access_token")
-    print("\n✅ Successfully authenticated! Access Token Retrieved.")
+    print("\n Successfully authenticated! Access Token Retrieved.")
 else:
-    print("\n❌ Authentication Failed:", auth_response.json())
+    print("\n Authentication Failed:", auth_response.json())
     exit()
 
-# STEP 2: Make an API Request Using the Token
+#  Makes API request
 API_URL = "https://api.availity.com/availity/v1/coverages"
 
 # Headers with the access token
@@ -37,7 +37,7 @@ headers = {
     "X-Api-Mock-Scenario-ID": "Coverages-Complete-i"  # Mock scenario
 }
 
-# Request payload for checking coverage
+# Request checking coverage
 api_payload = {
     "payerId": "123",
     "providerNpi": "1234567893",
@@ -53,18 +53,18 @@ api_payload = {
     "subscriberRelationship": "18"
 }
 
-# Send API request
+# Sends API request
 api_response = requests.post(API_URL, headers=headers, data=api_payload)
 
-# STEP 3: Save Response to JSON File
+# Saves Response to JSON File
 if api_response.status_code == 200:
-    print("\n✅ API Call Successful! Response saved to 'response.json'.")
+    print("\n API Call Successful! Response saved to 'response.json'.")
     
     # Save response to a JSON file
     with open("response.json", "w") as json_file:
         json.dump(api_response.json(), json_file, indent=4)
     
-    # Print a confirmation message
-    print("\n📂 Response saved to 'response.json'!")
+    # Print confirmation message
+    print("\n Response saved to 'response.json'!")
 else:
-    print("\n❌ API Call Failed:", api_response.json())
+    print("\n API Call Failed:", api_response.json())
